@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}ClipQuick - URL Shortener{% endblock %}
+
+{% block content %}
+
+<h1 class="ui header">Short your URL here</h1>
+<form class="ui form" method="POST">
+    <div class="field">
+        <input type="text" name="original_url" placeholder="Enter URL" required>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" id="passwordToggle">
+            <label>Protect with a Password</label>
+        </div>
+    </div>
+    <div class="field" id="passwordField" style="display: none;">
+        <label>Enter Password</label>
+        <input type="password" name="password" placeholder="Set a password">
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" name="generate_qr" id="qrToggle">
+            <label>Generate QR Code</label>
+        </div>
+    </div>
+    <button class="ui fluid primary button" type="submit">Shorten</button>
+</form>
+
+{% if short_url %}
+    <div class="ui message">
+        <p>Shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+
+        {% if qr_code_url %}
+            <div>
+                <img src="{{ qr_code_url }}" alt="QR Code">
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for category, msg in messages %}
+            <p style="color: red;">{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<script>
+    document.getElementById("passwordToggle").addEventListener("change", function () {
+        let passwordField = document.getElementById("passwordField");
+        passwordField.style.display = this.checked ? "block" : "none";
+    });
+</script>
+
+{% endblock %}

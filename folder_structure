@@ -1,0 +1,13 @@
+/ClipQuick
+│── /routes
+│   │── shorten_url.py         # Route for URL shortening
+│   │── view_all_urls.py       # Route to view all URLs
+│── /services
+│   │── shorten_url_service.py      # Business logic for URL shortening
+│   │── view_all_urls_service.py    # Business logic for viewing all URLs
+│── /models
+│   │── url.py                 # Database models
+│── config.py                  # Configuration settings
+│── app.py                     # Main entry point
+│── requirements.txt           # Dependencies
+│── README.md                  # Project info

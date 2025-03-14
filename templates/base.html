@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ClipQuick{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"
+        integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"
+        integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div class="ui container">
+        <div class="ui compact menu">
+            <a class="item" href="{{ url_for('shorten_url.home') }}">
+                ClipQuick
+            </a>
+            <!-- <div class="link item">
+                div Link
+            </div> -->
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="ui padded segment  ">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- FOOTER -->
+        <div class="ui vertical segment">
+            <div class="ui center aligned container">
+                <p>© 2025 My Website - aamit</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
