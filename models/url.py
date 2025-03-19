@@ -38,7 +38,7 @@ class ShortURL(db.Model):
     
     @staticmethod
     def set_password(password):
-        return bcrypt.generate_password_hash(password).decode("utf-8")
+        return bcrypt.generate_password_hash(password).decode("utf-8") if password else None
     
     @staticmethod
     def check_password(url, password):

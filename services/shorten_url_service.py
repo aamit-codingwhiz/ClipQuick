@@ -1,6 +1,7 @@
 # services/shorten_url_service.py
 from datetime import datetime, timedelta, timezone
 from models.url import db, ShortURL
+from utils.qr_code import generate_qr_code
 
 class ShortenURLService:
 
@@ -18,7 +19,11 @@ class ShortenURLService:
         )
         db.session.add(new_url)
         db.session.commit()
-        return new_url.short_code
+
+        qr_filename = generate_qr_code(
+            short_code=new_url.short_code
+        )
+        return new_url.short_code, qr_filename
     
     
     @staticmethod
@@ -29,7 +34,8 @@ class ShortenURLService:
     @staticmethod
     def is_password_protected(short_code):
         url = ShortURL.query.filter_by(short_code=short_code).first()
-        return True if url.password_hash else False
+        print(f"is_password_protected: > {url.password_hash} || type: > {type(url.password_hash)}")
+        return True if url.password_hash is not None else False
 
 
     @staticmethod
@@ -38,6 +44,6 @@ class ShortenURLService:
         url = ShortURL.query.filter_by(short_code=short_code).first()
 
         if password is not None:
-            return url.original_url if ShortURL.check_password(url, password) else None
+            return url.original_url if ShortURL.check_password(url=url, password=password) else None
 
         return url.original_url if url else None

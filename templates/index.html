@@ -4,48 +4,86 @@
 
 {% block content %}
 
-<h1 class="ui header">Short your URL here</h1>
-<form class="ui form" method="POST">
-    <div class="field">
-        <input type="text" name="original_url" placeholder="Enter URL" required>
-    </div>
-    <div class="field">
-        <div class="ui checkbox">
-            <input type="checkbox" id="passwordToggle">
-            <label>Protect with a Password</label>
+<div class="ui padded segment">
+    <h1 class="ui header">Short your URL here</h1>
+    <form class="ui form" method="POST">
+        <div class="field">
+            <input type="text" name="original_url" placeholder="Enter URL" required>
         </div>
-    </div>
-    <div class="field" id="passwordField" style="display: none;">
-        <label>Enter Password</label>
-        <input type="password" name="password" placeholder="Set a password">
-    </div>
-    <div class="field">
-        <div class="ui checkbox">
-            <input type="checkbox" name="generate_qr" id="qrToggle">
-            <label>Generate QR Code</label>
+        <div class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" id="passwordToggle">
+                <label>Protect with a Password</label>
+            </div>
         </div>
-    </div>
-    <button class="ui fluid primary button" type="submit">Shorten</button>
-</form>
+        <div class="field" id="passwordField" style="display: none;">
+            <label>Enter Password</label>
+            <input type="password" name="password" placeholder="Set a password">
+        </div>
+        <div class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" name="generate_qr" id="qrToggle">
+                <label>Generate QR Code</label>
+            </div>
+        </div>
+        <button class="ui fluid primary button" type="submit">Shorten</button>
+    </form>
+</div>
 
-{% if short_url %}
+<!-- {% if short_url %}
     <div class="ui message">
         <p>Shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
 
-        {% if qr_code_url %}
+        {% if qr_filename %}
             <div>
-                <img src="{{ qr_code_url }}" alt="QR Code">
+                <img class="ui small centered bordered image" src="{{ url_for('static', filename='qrcodes/' + qr_filename) }}" alt="QR Code">
             </div>
         {% endif %}
     </div>
+{% endif %} -->
+
+{% if short_url %}
+<div class="ui segment">
+    <div class="ui header">Your Shortened URL</div>
+
+    <div class="ui raised segment">
+        <div class="ui grid">
+            <div class="sixteen wide column">
+                <a class="ui blue large button" href="{{ short_url }}" target="_blank">
+                    <i class="linkify icon"></i> Visit Shortened URL
+                </a>
+                <p><strong>Shortened URL:</strong> <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+            </div>
+        </div>
+    </div>
+
+    {% if qr_filename %}
+    <div class="ui vertical segment">
+        <div class="ui header">QR Code for Your URL</div>
+        <div class="ui centered card">
+            <div class="image">
+                <img class="ui small centered bordered image"
+                    src="{{ url_for('static', filename='qrcodes/' + qr_filename) }}" alt="QR Code">
+            </div>
+            <div class="extra content">
+                <a class="ui green button" href="{{ url_for('static', filename='qrcodes/' + qr_filename) }}"
+                    download="{{ qr_filename }}">
+                    <i class="download icon"></i> Download QR Code
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 {% endif %}
 
+
 {% with messages = get_flashed_messages(with_categories=True) %}
-    {% if messages %}
-        {% for category, msg in messages %}
-            <p style="color: red;">{{ msg }}</p>
-        {% endfor %}
-    {% endif %}
+{% if messages %}
+{% for category, msg in messages %}
+<p style="color: red;">{{ msg }}</p>
+{% endfor %}
+{% endif %}
 {% endwith %}
 
 <script>
