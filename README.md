@@ -18,12 +18,12 @@ If you said **yes** to any of these, this project is for you! 💡
 
 ## 🔥 **Features at a Glance**  
 
-✔️ **Generate Short URLs** – Instantly shorten long URLs.  
-✔️ **Redirection** – Clicking a short link takes you to the original page. 
-✔️ **QR Code Generation** – Generate a QR code for every shortened URL. 
-✔️ **Password Protection** – Secure your links with passwords. 
-✔️ **REST API** – Shorten URLs programmatically. 
-✔️ **URL Expiration** – Set a time limit for your links. 
+- **Generate Short URLs**: Instantly shorten long URLs.  
+- **Redirection**: Clicking a short link takes you to the original page.  
+- **QR Code Generation**: Generate a QR code for every shortened URL.  
+- **Password Protection**: Secure your links with passwords.  
+- **REST API**: Shorten URLs programmatically.  
+- **URL Expiration**: Set a time limit for your links. 
 
 ---
 
