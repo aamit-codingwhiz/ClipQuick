@@ -3,6 +3,7 @@ from flask import Flask
 from models.url import db
 from routes.shorten_url import shorten_url_bp
 from routes.view_all_urls import view_all_urls_bp
+from routes.api import api_bp
 from config import Config
 
 app = Flask(
@@ -19,6 +20,9 @@ app.register_blueprint(
 )
 app.register_blueprint(
     blueprint=view_all_urls_bp
+)
+app.register_blueprint(
+    blueprint=api_bp
 )
 
 # Create database tables
