@@ -19,7 +19,36 @@ If you said **yes** to any of these, this project is for you! 💡
 ## 🔥 **Features at a Glance**  
 
 ✔️ **Generate Short URLs** – Instantly shorten long URLs.  
-✔️ **Redirection** – Clicking a short link takes you to the original page.
-✔️ **QR Code Generation** – Generate a QR code for every shortened URL.
-✔️ **Password Protection** – Secure your links with passwords.
-✔️ **URL Expiration** – Set a time limit for your links.
+✔️ **Redirection** – Clicking a short link takes you to the original page. 
+✔️ **QR Code Generation** – Generate a QR code for every shortened URL. 
+✔️ **Password Protection** – Secure your links with passwords. 
+✔️ **REST API** – Shorten URLs programmatically. 
+✔️ **URL Expiration** – Set a time limit for your links. 
+
+---
+
+### 🎯 API Usage
+#### Shorten a URL (POST Request)
+
+```bash
+curl -X POST http://127.0.0.1:5000/api/shorten \
+     -H "Content-Type: application/json" \
+     -d '{"original_url": "https://example.com"}'
+```
+
+✅ **Response:**
+```json
+{
+  "short_url": "http://127.0.0.1:5000/abc123"
+}
+```
+
+---
+
+#### Redirect to Original URL (GET Request)
+
+```bash
+curl -X GET http://127.0.0.1:5000/abc123
+```
+
+✅ **Redirects to:** `https://example.com`
